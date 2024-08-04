@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ToDoTracking</string>
+
+    <!-- Message -->
+    <string name="appName">TO-DO Tracking</string>
+    <string name="greeting">Your essential tool for daily and work!</string>
+    <string name="signInGreeting">Please sign in if you already have an account,\n or register to join us!</string>
+    <string name="registration_head">TO-DO Tracking\n Registration</string>
+
+    <string name="enter_userName">User Name:</string>
+    <string name="enter_email">Email:</string>
+    <string name="enter_password">Password:</string>
+    <string name="notification_check">Notifications for reminders!</string>
+    <string name="add_note">Add Note:</string>
+
+
+    <!-- hint -->
+    <string name="userName_hint">XXXXX</string>
+    <string name="email_hint">xxxxx@xxxxx.com</string>
+    <string name="password_hint">Aa12345</string>
+
+
+    <!-- Button -->
+    <string name="register_button">Registeration</string>
+    <string name="login_button">Login</string>
+    <string name="joinIn_button">Join in!</string>
+    <string name="remindMe_button">Remind Me</string>
+    <string name="addDueDate_button">Add Due Date</string>
+    <string name="update_button">Update</string>
+    <string name="delete_button">Delete</string>
+    <string name="addTask_button">Add</string>
+    <string name="edit_button">Edit</string>
+</resources>

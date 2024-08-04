@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="topBorder" type="id" />
+    <item name="bottomBorder" type="id" />
+    <item name="textViewAppName" type="id" />
+    <item name="textViewGreeting" type="id" />
+    <item name="textViewSubGreeting" type="id" />
+    <item name="textViewEmailLabel" type="id" />
+</resources>
