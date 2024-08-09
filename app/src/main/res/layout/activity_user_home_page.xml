@@ -46,8 +46,11 @@
         android:layout_marginTop="35dp"
         android:src="@drawable/todo_icon"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTask"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="160dp" />
+        tools:layout_editor_absoluteX="186dp" />
 
 
     <TextView

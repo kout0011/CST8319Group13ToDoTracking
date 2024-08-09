@@ -12,18 +12,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoTracking"
         tools:targetApi="31">
+
+        <!-- User Home Page -->
         <activity
             android:name=".UserHomePage"
-            android:exported="false" />
+            android:exported="false">
+            <!-- <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+
+              <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter> -->
+        </activity>
+
+        <!-- Task Edit Page -->
         <activity
             android:name=".TaskEditPage"
-            android:exported="false" />
+            android:exported="false">
+        <!-- <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter> -->
+    </activity>
+
+    <!-- Registration Page -->
         <activity
             android:name=".RegistrationPage"
-            android:exported="false" />
+            android:exported="false">
+            <!-- <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter> -->
+   </activity>
+
+        <!-- Add task Page -->
         <activity
             android:name=".AddTaskPage"
-            android:exported="false" />
+            android:exported="false">
+        <!-- <intent-filter>
+       <action android:name="android.intent.action.MAIN" />
+
+       <category android:name="android.intent.category.LAUNCHER" />
+   </intent-filter> -->
+</activity>
+
+<!-- App Main Page -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -32,7 +66,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
+       </activity>
+   </application>
 
 </manifest>

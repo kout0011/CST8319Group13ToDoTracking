@@ -31,7 +31,9 @@
         android:id="@+id/textViewRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="84dp"
+        android:layout_marginEnd="100dp"
         android:gravity="center"
         android:padding="4dp"
         android:text="@string/registration_head"
@@ -45,11 +47,16 @@
         android:id="@+id/icon"
         android:layout_width="91dp"
         android:layout_height="87dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="160dp"
         android:src="@drawable/todo_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistration"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="160dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextEnterUser"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textViewEnterUser"
@@ -143,13 +150,16 @@
         android:id="@+id/checkBoxNotifications"
         android:layout_width="229dp"
         android:layout_height="48dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
         android:background="#B0C4DE"
         android:padding="4dp"
         android:text="@string/notification_check"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
 
@@ -157,7 +167,9 @@
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginStart="160dp"
         android:text="@string/joinIn_button"
         android:textColor="#27374e"
         android:textStyle="bold"
@@ -166,5 +178,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxNotifications"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="@string/cancel_button"
+        android:textColor="#27374e"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBorder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonRegister"
+        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
