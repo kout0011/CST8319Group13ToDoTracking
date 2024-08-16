@@ -43,42 +43,51 @@
         android:id="@+id/icon"
         android:layout_width="91dp"
         android:layout_height="87dp"
-        android:layout_marginTop="35dp"
         android:src="@drawable/todo_icon"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTask"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="186dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        tools:ignore="MissingConstraints" />
 
+    <!--
+        <TextView
+            android:id="@+id/textViewTask"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            android:background="#808080"
+            android:gravity="left"
+            android:padding="8dp"
+            android:text="Task 1"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxTask"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon" />
 
-    <TextView
-        android:id="@+id/textViewTask"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight="1"
-        android:background="#808080"
-        android:gravity="left"
-        android:padding="8dp"
-        android:text="Task 1"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/checkBoxTask"
+        <CheckBox
+            android:id="@+id/checkBoxTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewTask"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewTask" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="408dp"
+        android:layout_height="362dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon" />
-
-    <CheckBox
-        android:id="@+id/checkBoxTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewTask" />
+        app:layout_constraintTop_toBottomOf="@+id/icon"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonAdd"
@@ -90,24 +99,8 @@
         android:textColor="#27374e"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomBorder"
-        app:layout_constraintEnd_toStartOf="@id/buttonEdit"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/buttonEdit"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/edit_button"
-        android:textColor="#27374e"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonAdd"
-        app:layout_constraintTop_toTopOf="@+id/buttonAdd"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
