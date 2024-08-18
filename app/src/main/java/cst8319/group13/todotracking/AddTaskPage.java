@@ -3,7 +3,6 @@ package cst8319.group13.todotracking;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -77,13 +76,13 @@ public class AddTaskPage extends AppCompatActivity {
         String taskName = editTextTaskName.getText().toString().trim();
         String note = editTextNote.getText().toString().trim();
 
-        Task task = new Task(selectedDueDate, note, taskName, 1, "1", remindme);
+        JustinTask justinTask = new JustinTask(selectedDueDate, note, taskName, 1, "1", remindme);
 
         String taskId = databaseReference.push().getKey();
 
         if (taskId != null) {
-            task.TaskId = taskId;
-            databaseReference.child(taskId).setValue(task).addOnCompleteListener(task1 -> {
+            justinTask.TaskId = taskId;
+            databaseReference.child(taskId).setValue(justinTask).addOnCompleteListener(task1 -> {
                 if (task1.isSuccessful()) {
                     Intent intent = new Intent(AddTaskPage.this, UserHomePage.class);
                     startActivity(intent);

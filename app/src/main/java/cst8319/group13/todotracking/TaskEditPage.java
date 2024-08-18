@@ -3,7 +3,6 @@ package cst8319.group13.todotracking;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,7 +24,7 @@ public class TaskEditPage extends AppCompatActivity {
     private String selectedDueDate = "";
     private DatabaseReference databaseReference;
     private boolean remindme;
-    private Task task;
+    private JustinTask justinTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +46,14 @@ public class TaskEditPage extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            task = bundle.getParcelable("task");
+            justinTask = bundle.getParcelable("task");
 
-            if (task != null) {
+            if (justinTask != null) {
                 // Set the UI with the task data
-                editTextTaskName.setText(task.TaskName);
-                editTextNote.setText(task.Notes);
-                dueDateTextView.setText(task.DueDate);
-                remindme = task.remindme;
+                editTextTaskName.setText(justinTask.TaskName);
+                editTextNote.setText(justinTask.Notes);
+                dueDateTextView.setText(justinTask.DueDate);
+                remindme = justinTask.remindme;
                 updateRemindMeButton(); // Update button text based on remindme value
 
                 // Set listeners
@@ -90,20 +89,20 @@ public class TaskEditPage extends AppCompatActivity {
     private void remindMe() {
         remindme = !remindme;
 
-        task.remindme = remindme;
+        justinTask.remindme = remindme;
         updateRemindMeButton();
         String un = remindme ? "" : "Un-";
         Toast.makeText(TaskEditPage.this, "Reminder " + un + "Set", Toast.LENGTH_SHORT).show();
     }
 
     private void updateTaskToFirebase() {
-        task.TaskName = editTextTaskName.getText().toString().trim();
-        task.Notes = editTextNote.getText().toString().trim();
-        task.DueDate = selectedDueDate;
-        task.remindme = remindme;
+        justinTask.TaskName = editTextTaskName.getText().toString().trim();
+        justinTask.Notes = editTextNote.getText().toString().trim();
+        justinTask.DueDate = selectedDueDate;
+        justinTask.remindme = remindme;
 
-        if (task.TaskId != null) {
-            databaseReference.child(task.TaskId).setValue(task).addOnCompleteListener(task1 -> {
+        if (justinTask.TaskId != null) {
+            databaseReference.child(justinTask.TaskId).setValue(justinTask).addOnCompleteListener(task1 -> {
                 if (task1.isSuccessful()) {
                     Toast.makeText(TaskEditPage.this, "Task has been updated", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TaskEditPage.this, UserHomePage.class);
@@ -116,8 +115,8 @@ public class TaskEditPage extends AppCompatActivity {
     }
 
     private void deleteTaskFromFirebase() {
-        if (task.TaskId != null) {
-            databaseReference.child(task.TaskId).removeValue().addOnCompleteListener(task -> {
+        if (justinTask.TaskId != null) {
+            databaseReference.child(justinTask.TaskId).removeValue().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(TaskEditPage.this, "Task deleted", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TaskEditPage.this, UserHomePage.class);

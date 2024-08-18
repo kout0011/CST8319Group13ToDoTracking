@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserHomePage extends AppCompatActivity implements OnItemClickListener {
+public class UserHomePage extends AppCompatActivity implements JustinOnItemClickListener {
 
     private RecyclerView recyclerView;
-    private List<Task> taskList;
+    private List<JustinTask> justinTaskList;
     private TaskAdapter taskAdapter;
     private Button newButton, editButton;
 
@@ -43,8 +43,8 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        taskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(taskList, this);
+        justinTaskList = new ArrayList<>();
+        taskAdapter = new TaskAdapter(justinTaskList, this);
         recyclerView.setAdapter(taskAdapter);
 
         newButton = findViewById(R.id.buttonAdd);
@@ -59,9 +59,9 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
         fetchDataFromFirebase();
     }
 
-    private void updateTaskInFirebase(Task updatedTask) {
+    private void updateTaskInFirebase(JustinTask updatedJustinTask) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Task");
-        databaseReference.child(String.valueOf(updatedTask.TaskId)).setValue(updatedTask)
+        databaseReference.child(String.valueOf(updatedJustinTask.TaskId)).setValue(updatedJustinTask)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(UserHomePage.this, "Task updated", Toast.LENGTH_SHORT).show();
@@ -79,13 +79,13 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                taskList.clear();
+                justinTaskList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Task task = snapshot.getValue(Task.class);
+                    JustinTask justinTask = snapshot.getValue(JustinTask.class);
 
-                    if (task != null) {
-                        taskList.add(task);
+                    if (justinTask != null) {
+                        justinTaskList.add(justinTask);
                     }
                 }
                 taskAdapter.notifyDataSetChanged();
@@ -100,9 +100,9 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
     }
     @Override
     public void onItemClick(int position) {
-        Task clickedTask = taskList.get(position);
+        JustinTask clickedJustinTask = justinTaskList.get(position);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("task", clickedTask);
+        bundle.putParcelable("task", clickedJustinTask);
 
         Intent intent = new Intent(UserHomePage.this, TaskEditPage.class);
         intent.putExtras(bundle);
@@ -111,21 +111,21 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
 
     @Override
     public void onCheckBoxClick(int position) {
-        Task clickedTask = taskList.get(position);
-        clickedTask.checked = !clickedTask.checked;
+        JustinTask clickedJustinTask = justinTaskList.get(position);
+        clickedJustinTask.checked = !clickedJustinTask.checked;
 
-        updateTaskInFirebase(clickedTask);
+        updateTaskInFirebase(clickedJustinTask);
 
-        taskList.set(position, clickedTask);
+        justinTaskList.set(position, clickedJustinTask);
         taskAdapter.notifyItemChanged(position);
     }
 
     // Picking background color for list items
-    private int getColorForTask(Task task) {
+    private int getColorForTask(JustinTask justinTask) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date expirationDate = null;
         try {
-            expirationDate = dateFormat.parse(task.DueDate);
+            expirationDate = dateFormat.parse(justinTask.DueDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -137,7 +137,7 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
         Date currentDate = new Date();
         if (currentDate.after(expirationDate)) {
             return Color.parseColor("#ff9591"); //Expired
-        } else if (task.checked) {
+        } else if (justinTask.checked) {
             return Color.parseColor("#bfbfbf"); //Checked
         } else {
             return Color.parseColor("#808080"); //Default
@@ -147,12 +147,12 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
     // Task Adapter
     private class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-        private List<Task> taskList;
-        private OnItemClickListener onItemClickListener;
+        private List<JustinTask> justinTaskList;
+        private JustinOnItemClickListener JustinOnItemClickListener;
 
-        public TaskAdapter(List<Task> tasks, OnItemClickListener listener) {
-            this.taskList = tasks;
-            this.onItemClickListener = listener;
+        public TaskAdapter(List<JustinTask> justinTasks, JustinOnItemClickListener listener) {
+            this.justinTaskList = justinTasks;
+            this.JustinOnItemClickListener = listener;
         }
 
         @NonNull
@@ -164,31 +164,31 @@ public class UserHomePage extends AppCompatActivity implements OnItemClickListen
 
         @Override
         public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-            Task task = taskList.get(position);
-            holder.textViewTask.setBackgroundColor(getColorForTask(task));
-            String text = task.TaskName;
-            if (getColorForTask(task) == Color.parseColor("#ff9591")) {
+            JustinTask justinTask = justinTaskList.get(position);
+            holder.textViewTask.setBackgroundColor(getColorForTask(justinTask));
+            String text = justinTask.TaskName;
+            if (getColorForTask(justinTask) == Color.parseColor("#ff9591")) {
                 text = text + " - Expired ( ! )";
             }
             holder.textViewTask.setText(text);
-            holder.checkBoxTask.setChecked(task.checked);
+            holder.checkBoxTask.setChecked(justinTask.checked);
 
             holder.itemView.setOnClickListener(v -> {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(position);
+                if (JustinOnItemClickListener != null) {
+                    JustinOnItemClickListener.onItemClick(position);
                 }
             });
 
             holder.checkBoxTask.setOnClickListener(v -> {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onCheckBoxClick(position);
+                if (JustinOnItemClickListener != null) {
+                    JustinOnItemClickListener.onCheckBoxClick(position);
                 }
             });
         }
 
         @Override
         public int getItemCount() {
-            return taskList.size();
+            return justinTaskList.size();
         }
 
         public class TaskViewHolder extends RecyclerView.ViewHolder {

@@ -3,7 +3,7 @@ package cst8319.group13.todotracking;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Task implements Parcelable {
+public class JustinTask implements Parcelable {
     public String DueDate;
     public String Notes;
     public String TaskName;
@@ -12,10 +12,10 @@ public class Task implements Parcelable {
     public boolean checked;
     public boolean remindme;
 
-    public Task() {
+    public JustinTask() {
     }
 
-    public Task(String dueDate, String notes, String taskName, int userId, String TaskId, boolean remindme) {
+    public JustinTask(String dueDate, String notes, String taskName, int userId, String TaskId, boolean remindme) {
         this.DueDate = dueDate;
         this.Notes = notes;
         this.TaskName = taskName;
@@ -25,7 +25,7 @@ public class Task implements Parcelable {
         this.remindme = remindme;
     }
 
-    protected Task(Parcel in) {
+    protected JustinTask(Parcel in) {
         DueDate = in.readString();
         Notes = in.readString();
         TaskName = in.readString();
@@ -34,15 +34,15 @@ public class Task implements Parcelable {
         remindme = in.readByte() != 0;
     }
 
-    public static final Creator<Task> CREATOR = new Creator<Task>() {
+    public static final Creator<JustinTask> CREATOR = new Creator<JustinTask>() {
         @Override
-        public Task createFromParcel(Parcel in) {
-            return new Task(in);
+        public JustinTask createFromParcel(Parcel in) {
+            return new JustinTask(in);
         }
 
         @Override
-        public Task[] newArray(int size) {
-            return new Task[size];
+        public JustinTask[] newArray(int size) {
+            return new JustinTask[size];
         }
     };
 
