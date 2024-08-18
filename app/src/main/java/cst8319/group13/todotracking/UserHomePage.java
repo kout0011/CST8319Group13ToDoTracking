@@ -32,7 +32,7 @@ public class UserHomePage extends AppCompatActivity implements JustinOnItemClick
 
     private RecyclerView recyclerView;
     private List<JustinTask> justinTaskList;
-    private TaskAdapter taskAdapter;
+    private JustinTaskAdapter taskAdapter;
     private Button newButton, editButton;
 
     @Override
@@ -44,7 +44,7 @@ public class UserHomePage extends AppCompatActivity implements JustinOnItemClick
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         justinTaskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(justinTaskList, this);
+        taskAdapter = new JustinTaskAdapter(justinTaskList, this);
         recyclerView.setAdapter(taskAdapter);
 
         newButton = findViewById(R.id.buttonAdd);
@@ -118,88 +118,5 @@ public class UserHomePage extends AppCompatActivity implements JustinOnItemClick
 
         justinTaskList.set(position, clickedJustinTask);
         taskAdapter.notifyItemChanged(position);
-    }
-
-    // Picking background color for list items
-    private int getColorForTask(JustinTask justinTask) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date expirationDate = null;
-        try {
-            expirationDate = dateFormat.parse(justinTask.DueDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if (expirationDate == null) {
-            return Color.GRAY;
-        }
-
-        Date currentDate = new Date();
-        if (currentDate.after(expirationDate)) {
-            return Color.parseColor("#ff9591"); //Expired
-        } else if (justinTask.checked) {
-            return Color.parseColor("#bfbfbf"); //Checked
-        } else {
-            return Color.parseColor("#808080"); //Default
-        }
-    }
-
-    // Task Adapter
-    private class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
-
-        private List<JustinTask> justinTaskList;
-        private JustinOnItemClickListener JustinOnItemClickListener;
-
-        public TaskAdapter(List<JustinTask> justinTasks, JustinOnItemClickListener listener) {
-            this.justinTaskList = justinTasks;
-            this.JustinOnItemClickListener = listener;
-        }
-
-        @NonNull
-        @Override
-        public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
-            return new TaskViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-            JustinTask justinTask = justinTaskList.get(position);
-            holder.textViewTask.setBackgroundColor(getColorForTask(justinTask));
-            String text = justinTask.TaskName;
-            if (getColorForTask(justinTask) == Color.parseColor("#ff9591")) {
-                text = text + " - Expired ( ! )";
-            }
-            holder.textViewTask.setText(text);
-            holder.checkBoxTask.setChecked(justinTask.checked);
-
-            holder.itemView.setOnClickListener(v -> {
-                if (JustinOnItemClickListener != null) {
-                    JustinOnItemClickListener.onItemClick(position);
-                }
-            });
-
-            holder.checkBoxTask.setOnClickListener(v -> {
-                if (JustinOnItemClickListener != null) {
-                    JustinOnItemClickListener.onCheckBoxClick(position);
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return justinTaskList.size();
-        }
-
-        public class TaskViewHolder extends RecyclerView.ViewHolder {
-            TextView textViewTask;
-            CheckBox checkBoxTask;
-
-            public TaskViewHolder(@NonNull View itemView) {
-                super(itemView);
-                textViewTask = itemView.findViewById(R.id.textViewTask);
-                checkBoxTask = itemView.findViewById(R.id.checkBoxTask);
-            }
-        }
     }
 }
