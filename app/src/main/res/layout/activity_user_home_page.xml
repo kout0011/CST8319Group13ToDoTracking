@@ -93,13 +93,42 @@
         android:id="@+id/buttonAdd"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="32dp"
         android:layout_marginEnd="8dp"
         android:text="@string/addTask_button"
         android:textColor="#27374e"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomBorder"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:text="@string/edit_button"
+        android:textColor="#27374e"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBorder"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLogout"
+        app:layout_constraintStart_toEndOf="@+id/buttonAdd" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/logout_button"
+        android:textColor="#27374e"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonEdit"
+        app:layout_constraintTop_toTopOf="@+id/buttonAdd"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 
 
