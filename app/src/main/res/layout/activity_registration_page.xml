@@ -180,7 +180,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/buttonCancel"
+        android:id="@+id/buttonCancelRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
@@ -188,7 +188,7 @@
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
-        android:text="@string/cancel_button"
+        android:text="@string/cancel_registration"
         android:textColor="#27374e"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomBorder"

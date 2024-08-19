@@ -24,6 +24,7 @@
     <string name="register_button">Registeration</string>
     <string name="login_button">Login</string>
     <string name="joinIn_button">Join in!</string>
+    <string name="logout_button">Logout</string>
     <string name="remindMe_button">Remind Me</string>
     <string name="addDueDate_button">Add Due Date</string>
     <string name="update_button">Update</string>
@@ -31,4 +32,6 @@
     <string name="addTask_button">Add</string>
     <string name="edit_button">Edit</string>
     <string name="cancel_button">Cancel</string>
+    <string name="cancel_registration">Cancel</string>
+
 </resources>
