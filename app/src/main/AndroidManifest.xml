@@ -46,7 +46,7 @@
     </intent-filter> -->
    </activity>
 
-        <!-- Add task Page -->
+        <!-- Add justinTask Page -->
         <activity
             android:name=".AddTaskPage"
             android:exported="false">

@@ -81,7 +81,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewGreeting" />
 
-
     <TextView
         android:id="@+id/textViewEmailLabel"
         android:layout_width="wrap_content"
