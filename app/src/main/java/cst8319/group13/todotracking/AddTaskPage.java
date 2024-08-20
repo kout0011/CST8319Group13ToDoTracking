@@ -21,12 +21,16 @@ public class AddTaskPage extends AppCompatActivity {
     private String selectedDueDate = "";
     private boolean remindme;
 
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task_page);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Task");
+
+        id = getIntent().getIntExtra("id", -1);
 
         editTextTaskName = findViewById(R.id.editTextTaskName);
         editTextNote = findViewById(R.id.editTextNote);
@@ -76,7 +80,7 @@ public class AddTaskPage extends AppCompatActivity {
         String taskName = editTextTaskName.getText().toString().trim();
         String note = editTextNote.getText().toString().trim();
 
-        JustinTask justinTask = new JustinTask(selectedDueDate, note, taskName, 1, "1", remindme);
+        JustinTask justinTask = new JustinTask(selectedDueDate, note, taskName, id, "1", remindme);
 
         String taskId = databaseReference.push().getKey();
 
